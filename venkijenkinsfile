@@ -17,7 +17,7 @@ stages {
         echo " Packaing the Application"
         sh 'mvn clean package'
             }
-          }
-          }
-          }
+        }
+    }
+}
 
