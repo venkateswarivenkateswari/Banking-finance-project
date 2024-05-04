@@ -15,7 +15,7 @@ stages {
     stage('Package the Application') {
       steps {
         echo " Packaing the Application"
-        sh 'mvn clean package'
+        sh 'clean package'
             }
         }
     }
