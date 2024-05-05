@@ -18,17 +18,17 @@ stages {
         sh 'mvn clean package'
             }
         }
- stage('Publish Reports using HTML') {
+    stage('Publish Reports using HTML') {
       steps {
-      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Banking-Project/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Banking-Project/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
     }
-stages('create image from the package'){
-steps{
-echo 'create image using docker'
-sh 'docker build -t vankat555/bankproj:1.0 .'
-       }
+     stages('create image from the package'){
+       steps{
+         echo 'create image using docker'
+         sh 'docker build -t vankat555/bankproj:1.0 .'
+            }
+         }
      }
-   }
 }
 
