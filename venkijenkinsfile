@@ -24,11 +24,17 @@ stage('Publish Reports using HTML') {
             }
     }
 stage('create image from the package'){
-  steps{
+  steps {
     echo 'create image using docker'
     sh 'docker build -t vankat555/bankproj:1.0 .'
             }
          }
+stage('Docker login')
+  steps {
+   echo 'Docker login'
+    withCredentials([usernamePassword(credentialsId: 'Docker-user', passwordVariable: 'Dockerpassword', usernameVariable: 'Docker login')]) {
+    // some block
+}
      }
 }
 
