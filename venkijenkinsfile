@@ -32,8 +32,8 @@ stage('create image from the package'){
 stage('Docker login'){
   steps {
    echo 'Docker login'
-    withCredentials([usernamePassword(credentialsId: 'Docker-user', passwordVariable: 'Dockerpassword', usernameVariable: 'Docker login')]) {
-    // some block
+    withCredentials([usernamePassword(credentialsId: 'Docker-user', passwordVariable: 'Dockerpassword', usernameVariable: 'Docker login')])
+    
         }
      }
    }
