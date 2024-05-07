@@ -9,7 +9,7 @@ pipeline {
    stage('CheckOut') {
       steps {
         echo 'Checkout the source code from GitHub'
-        git branch: 'main', url: 'https://github.com/cbabu85/Banking-finance-project.git'
+        git branch: 'main', url: 'https://github.com/venkateswarivenkateswari/Banking-finance-project.git'
             }
         }
         stage('Package the Application') {
@@ -20,12 +20,12 @@ pipeline {
         }
          stage('Publish Reports using HTML') {
       steps {
-      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/bank-project/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/bank-project1/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
             }
         }
         stage('Docker Image Creation') {
       steps {
-        sh 'docker build -t vankat555/bankfinaproj:1.0 .'
+        sh 'docker build -t vankat555/bankfinaproj:2.0 .'
             }
         }
          stage('DockerLogin') {
@@ -37,7 +37,7 @@ pipeline {
     } 
      stage('Push Image to DockerHub') {
       steps {
-        sh 'docker push vankat555/bankfinaproj:1.0'
+        sh 'docker push vankat555/bankfinaproj:2.0'
             }
         }
         
