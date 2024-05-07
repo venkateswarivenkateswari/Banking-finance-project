@@ -5,36 +5,41 @@ pipeline {
     maven 'M2_HOME'
     
     }
-stages {
+    stages {
    stage('CheckOut') {
       steps {
         echo 'Checkout the source code from GitHub'
-        git branch: 'main', url: 'https://github.com/venkateswarivenkateswari/Banking-finance-project.git'
-            }
-    }
-stage('Package the Application') {
-   steps {
-      echo " Packaing the Application"
-      sh 'mvn clean package'
+        git branch: 'main', url: 'https://github.com/cbabu85/Banking-finance-project.git'
             }
         }
-stage('Publish Reports using HTML') {
-  steps {
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Banking-Project/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+        stage('Package the Application') {
+      steps {
+        echo " Packaing the Application"
+        sh 'mvn clean package'
             }
-    }
-stage('create image from the package'){
-  steps {
-    echo 'create image using docker'
-    sh 'docker build -t vankat555/bankproj:1.0 .'
-            }
-         }
-stage('Docker login'){
-  steps {
-   echo 'Docker login'
-    withCredentials([usernamePassword(credentialsId: 'Docker-user', passwordVariable: 'Dockerpassword', usernameVariable: 'Docker login')])
-    
         }
-     }
-   }
+         stage('Publish Reports using HTML') {
+      steps {
+      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/bank-project/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+            }
+        }
+        stage('Docker Image Creation') {
+      steps {
+        sh 'docker build -t vankat555/bankfinaproj:1.0 .'
+            }
+        }
+         stage('DockerLogin') {
+      steps {
+          withCredentials([usernamePassword(credentialsId: 'dockerhubcred', passwordVariable: 'Dockerpassword', usernameVariable: 'Dockerlogin')]) {
+        sh 'docker login -u ${Dockerlogin} -p ${Dockerpassword}'
+            }
+        }
+    } 
+     stage('Push Image to DockerHub') {
+      steps {
+        sh 'docker push vankat555/bankfinaproj:1.0'
+            }
+        }
+        
+    }
 }
