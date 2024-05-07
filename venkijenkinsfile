@@ -42,7 +42,7 @@ pipeline {
         }
      stage('Deploy using ansible') {
       steps {
-        ansiblePlaybook credentialsId: 'ssh-user-cred', disableHostKeyChecking: true, installation: 'ansible', playbook: 'ansible-playbook.yml', vaultTmpPath: ''
+        echo "ansible deploy"
           }
        }
     }
