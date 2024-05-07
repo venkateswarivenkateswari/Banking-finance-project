@@ -1,5 +1,5 @@
-- name: Docker configure in Ec2 Machine
-  hosts: all
+- name: Docker configure 
+  hosts: webserver
   become : true
   connection: ssh
   tasks:
