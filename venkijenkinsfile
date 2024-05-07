@@ -20,7 +20,7 @@ pipeline {
         }
          stage('Publish Reports using HTML') {
       steps {
-        ansiblePlaybook credentialsId: 'ssh-user-cred', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml', vaultTmpPath: ''
+        ansiblePlaybook credentialsId: 'ssh-user-cred', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible.yml', vaultTmpPath: ''
             }
         }
         stage('Docker Image Creation') {
