@@ -17,4 +17,4 @@
     become_user: root
 
   - name: Deploy the Image and Run as Container
-    command: docker run -itd -p 8084:8081 vankat555/
+    command: docker run -itd -p 8084:8081 vankat555/bankfinaproj:2.0
