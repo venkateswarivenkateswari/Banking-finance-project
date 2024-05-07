@@ -40,6 +40,9 @@ pipeline {
         sh 'docker push vankat555/bankfinaproj:2.0'
             }
         }
+     stage('Deploy using ansible') {
+      steps {
+        
         
     }
 }
